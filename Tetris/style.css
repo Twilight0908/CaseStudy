@@ -2,6 +2,7 @@
   font-family: "Press Start 2P", cursive;
   margin: 0;
   padding: 0;
+  color: white;
 }
 
 body {
@@ -28,6 +29,7 @@ body {
 
 .play-btn {
   background-color: greenyellow;
+  color: black;
   font-size: 16px;
   padding: 15px 30px;
   cursor: pointer;

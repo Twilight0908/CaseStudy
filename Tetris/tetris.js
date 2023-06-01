@@ -186,12 +186,14 @@ const KEY_CODES = {
 
 const WHITE_COLOR_ID = 7;
 
+// khoi tao khung canvas
 const canvas = document.getElementById("board");
 const ctx = canvas.getContext("2d");
 
 ctx.canvas.width = COLS * BLOCK_SIZE;
 ctx.canvas.height = ROWS * BLOCK_SIZE;
 
+// tao bang
 class Board {
   constructor(ctx) {
     this.ctx = ctx;
@@ -240,6 +242,7 @@ class Board {
     }
   }
 
+  // xu ly hoan thanh 1 hang
   handleCompleteRows() {
     const latestGrid = board.grid.filter((row) => {
       return row.some((col) => col === WHITE_COLOR_ID);
@@ -255,7 +258,7 @@ class Board {
       this.handleScore(newScore * 10);
 
       this.clearAudio.play();
-      console.log({ latestGrid });
+      // console.log({ latestGrid });
     }
   }
 
@@ -271,6 +274,7 @@ class Board {
   }
 }
 
+// tao khoi gach
 class Brick {
   constructor(id) {
     this.id = id;
@@ -361,6 +365,7 @@ class Brick {
     }
   }
 
+  // kiem tra va cham
   checkCollision(nextRow, nextCol, nextLayout) {
     for (let row = 0; row < nextLayout.length; row++) {
       for (let col = 0; col < nextLayout[0].length; col++) {
@@ -379,6 +384,7 @@ class Brick {
     return false;
   }
 
+  // xu ly ha canh
   handleLanded() {
     if (this.rowPos <= 0) {
       board.handleGameOver();
@@ -398,6 +404,7 @@ class Brick {
   }
 }
 
+// tao ngau nhien
 function generateNewBrick() {
   brick = new Brick(Math.floor(Math.random() * 10) % BRICK_LAYOUT.length);
 }
@@ -411,6 +418,7 @@ sound.loop;
 
 document.getElementById("play").addEventListener("click", () => {
   board.reset();
+  board.handleScore(board.score);
 
   board.isPlaying = true;
 
@@ -427,7 +435,7 @@ document.getElementById("play").addEventListener("click", () => {
 
 document.addEventListener("keydown", (e) => {
   if (!board.gameOver && board.isPlaying) {
-    console.log({ e });
+    // console.log({ e });
     switch (e.code) {
       case KEY_CODES.LEFT:
         brick.moveLeft();
