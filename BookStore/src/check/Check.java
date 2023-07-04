@@ -34,7 +34,14 @@ public class Check {
         return input;
     }
 
-    public String checkRegex() {
-        return null;
+    public String checkRegex(String str, String regex) {
+        String input;
+        boolean check = false;
+        do {
+            System.out.print(str);
+            input = Input.nextLine();
+            check = input.matches(regex);
+        } while (!check);
+        return input;
     }
 }

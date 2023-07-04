@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookIOFile implements IOFile<Books> {
-    private File file = new File("BookStore/data/book.csv");
+    private File file = new File("BookStore/data/books.csv");
 
     @Override
     public void writerFile(List<Books> books) throws IOException {

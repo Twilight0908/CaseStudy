@@ -62,12 +62,12 @@ public class Comics extends Document {
     @Override
     public String toString() {
         return "Mã Truyện: " + super.getDocumentId() + "\n" +
-                " Nhà Xuất Bản: " + super.getPublisherName() + "\n" +
-                " Tên Truyện: " + this.getComicsName() + "\n" +
-                " Tác Giả: " + this.getAuthorName() + "\n" +
-                " Thể Loại: " + this.getCategory() + "\n" +
-                " Số Lượng: " + super.getReleaseNumber() + "\n" +
-                " Số Trang: " + this.getPageNumber() + "\n" +
-                " Giá: " + this.getComicsPrice();
+                "Nhà Xuất Bản: " + super.getPublisherName() + "\n" +
+                "Tên Truyện: " + this.getComicsName() + "\n" +
+                "Tác Giả: " + this.getAuthorName() + "\n" +
+                "Thể Loại: " + this.getCategory() + "\n" +
+                "Số Lượng: " + super.getReleaseNumber() + "\n" +
+                "Số Trang: " + this.getPageNumber() + "\n" +
+                "Giá: " + this.getComicsPrice();
     }
 }

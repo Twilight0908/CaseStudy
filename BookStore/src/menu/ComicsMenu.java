@@ -1,26 +1,26 @@
 package menu;
 
 import check.Check;
-import management.manager.BookManagement;
-import model.Books;
+import management.manager.ComicsManagement;
+import model.Comics;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class BookMenu {
-    private BookManagement bookManagement = new BookManagement();
+public class ComicsMenu {
+    private ComicsManagement comicsManagement = new ComicsManagement();
     private Check check = new Check();
     private Scanner input = new Scanner(System.in);
 
-    public void bookMenu() {
+    public void comicsMenu() {
         int choice = -1;
         do {
-            String str = "===== Quản Lý Sách =====\n" +
-                    "1. Thêm Sách\n" +
-                    "2. Sửa Sách\n" +
-                    "3. Xóa Sách\n" +
-                    "4. Tìm Kiếm Sách\n" +
-                    "5. Hiển Thị Sách\n" +
+            String str = "===== Quản Lý Truyện =====\n" +
+                    "1. Thêm Truyện\n" +
+                    "2. Sửa Truyện\n" +
+                    "3. Xóa Truyện\n" +
+                    "4. Tìm Kiếm Truyện\n" +
+                    "5. Hiển Thị Truyện\n" +
                     "0. Thoát";
             System.out.println(str);
             System.out.println("----------");
@@ -42,7 +42,7 @@ public class BookMenu {
                     findMenu();
                     break;
                 case 5:
-                    showAllBooks();
+                    showAllComics();
                     break;
                 case 0:
                     break;
@@ -55,16 +55,16 @@ public class BookMenu {
     }
 
     private void addMenu() {
-        System.out.println("+++++ Thêm Sách +++++");
+        System.out.println("+++++ Thêm Truyện +++++");
         String documentId;
         while (true) {
-            String regex = "^b\\d+$";
-            String str = "Nhâp Id Sách(vd: b01): ";
+            String regex = "^c\\d+$";
+            String str = "Nhâp Id Truyện(vd: c01): ";
             documentId = check.checkRegex(str, regex);
-            if (bookManagement.findIndexById(documentId) == -1) {
+            if (comicsManagement.findIndexById(documentId) == -1) {
                 break;
             }
-            System.out.println("Id Sách Đã Có !!!");
+            System.out.println("Id Truyện Đã Có !!!");
         }
 
         System.out.print("Nhập Nhà Xuất Bản: ");
@@ -74,8 +74,8 @@ public class BookMenu {
         System.out.print(str1);
         int releaseNumber = check.checkInputNumber(str1);
 
-        System.out.print("Nhập Tên Sách: ");
-        String bookName = input.nextLine();
+        System.out.print("Nhập Tên Truyện: ");
+        String comicsName = input.nextLine();
 
         System.out.print("Nhập Tên Tác Giả: ");
         String authorName = input.nextLine();
@@ -89,20 +89,20 @@ public class BookMenu {
 
         String str3 = "Nhập Giá: ";
         System.out.print(str3);
-        double bookPrice = check.checkInputNumber(str3);
+        double comicsPrice = check.checkInputNumber(str3);
 
-        Books books = new Books(documentId, publisherName, releaseNumber, bookName, authorName, category, pageNumber, bookPrice);
-        bookManagement.add(books);
+        Comics comics = new Comics(documentId, publisherName, releaseNumber, comicsName, authorName, category, pageNumber, comicsPrice);
+        comicsManagement.add(comics);
 
         System.out.println("//////////");
     }
 
     private void editMenu() {
-        System.out.println("!!!!! Sửa Sách !!!!!");
-        String regex = "^b\\d+$";
-        String str = "Nhâp Id Sách(vd: b01): ";
+        System.out.println("!!!!! Sửa Truyện !!!!!");
+        String regex = "^c\\d+$";
+        String str = "Nhâp Id Truyện(vd: c01): ";
         String documentId = check.checkRegex(str, regex);
-        if (bookManagement.findIndexById(documentId) == -1) {
+        if (comicsManagement.findIndexById(documentId) == -1) {
             System.out.println("Không Có Id Muốn Sửa !!!");
         } else {
             System.out.print("Nhập Nhà Xuất Bản: ");
@@ -112,8 +112,8 @@ public class BookMenu {
             System.out.print(str1);
             int releaseNumber = check.checkInputNumber(str1);
 
-            System.out.print("Nhập Tên Sách: ");
-            String bookName = input.nextLine();
+            System.out.print("Nhập Tên Truyện: ");
+            String comicsName = input.nextLine();
 
             System.out.print("Nhập Tên Tác Giả: ");
             String authorName = input.nextLine();
@@ -127,29 +127,29 @@ public class BookMenu {
 
             String str3 = "Nhập Giá: ";
             System.out.print(str3);
-            double bookPrice = check.checkInputNumber(str3);
+            double comicsPrice = check.checkInputNumber(str3);
 
-            Books books = new Books(documentId, publisherName, releaseNumber, bookName, authorName, category, pageNumber, bookPrice);
-            bookManagement.edit(documentId, books);
+            Comics comics = new Comics(documentId, publisherName, releaseNumber, comicsName, authorName, category, pageNumber, comicsPrice);
+            comicsManagement.edit(documentId, comics);
             System.out.println("//////////");
         }
     }
 
     private void deleteMenu() {
-        System.out.println("----- Xóa Sách -----");
-        String regex = "^b\\d+$";
-        String str = "Nhâp Id Sách(vd: b01): ";
+        System.out.println("----- Xóa Truyện -----");
+        String regex = "^c\\d+$";
+        String str = "Nhâp Id Truyện(vd: c01): ";
         String documentId = check.checkRegex(str, regex);
-        bookManagement.delete(documentId);
+        comicsManagement.delete(documentId);
         System.out.println("//////////");
     }
 
     private void findMenu() {
         int choice = -1;
         do {
-            String str = "%%%%% Tìm Sách %%%%%\n" +
-                    "1. Tìm Sách Theo Id\n" +
-                    "2. Tìm Sách Theo Tên\n" +
+            String str = "%%%%% Tìm Truyện %%%%%\n" +
+                    "1. Tìm Truyện Theo Id\n" +
+                    "2. Tìm Truyện Theo Tên\n" +
                     "0. Thoát";
             System.out.println(str);
             System.out.println("----------");
@@ -175,42 +175,42 @@ public class BookMenu {
     }
 
     private void findById() {
-        System.out.println("%%%%% Tìm Sách Theo Id %%%%%");
-        String regex = "^b\\d+$";
-        String str = "Nhâp Id Sách(vd: b01): ";
+        System.out.println("%%%%% Tìm Truyện Theo Id %%%%%");
+        String regex = "^c\\d+$";
+        String str = "Nhâp Id Truyện(vd: c01): ";
         String documentId = check.checkRegex(str, regex);
         System.out.println("----------");
-        int index = bookManagement.findIndexById(documentId);
+        int index = comicsManagement.findIndexById(documentId);
         if (index != -1) {
-            System.out.println(bookManagement.getAll().get(index).toString());
+            System.out.println(comicsManagement.getAll().get(index).toString());
             System.out.println("//////////");
         } else {
-            System.out.println("Không Tìm Thấy Sách !!!");
+            System.out.println("Không Tìm Thấy Truyện !!!");
             System.out.println("//////////");
         }
     }
 
     private void findByName() {
-        System.out.println("%%%%% Tìm Sách Theo Tên %%%%%");
-        System.out.print("Nhập Tên Sách: ");
-        String bookName = input.nextLine();
+        System.out.println("%%%%% Tìm Truyện Theo Tên %%%%%");
+        System.out.print("Nhập Tên Truyện: ");
+        String comicsName = input.nextLine();
         System.out.println("----------");
-        List<Books> list = bookManagement.findByName(bookName);
+        List<Comics> list = comicsManagement.findByName(comicsName);
         if (list.size() != 0) {
-            for (Books books : list) {
-                System.out.println(books.toString());
+            for (Comics comics : list) {
+                System.out.println(comics.toString());
                 System.out.println("**********");
             }
         } else {
-            System.out.println("Không Tìm Thấy Sách !!!");
+            System.out.println("Không Tìm Thấy Truyện !!!");
             System.out.println("//////////");
         }
     }
 
-    private void showAllBooks() {
-        System.out.println("***** Danh Sách Sách *****");
-        for (Books books : bookManagement.getAll()) {
-            System.out.println(books.toString());
+    private void showAllComics() {
+        System.out.println("***** Danh Sách Truyện *****");
+        for (Comics comics : comicsManagement.getAll()) {
+            System.out.println(comics.toString());
             System.out.println("**********");
         }
         System.out.println("//////////");

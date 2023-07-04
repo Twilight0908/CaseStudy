@@ -5,6 +5,7 @@ import check.Check;
 public class MainMenu {
     private Check check = new Check();
     private BookMenu bookMenu = new BookMenu();
+    private ComicsMenu comicsMenu = new ComicsMenu();
 
     public void mainMenu() {
         int choice = -1;
@@ -55,6 +56,7 @@ public class MainMenu {
                     bookMenu.bookMenu();
                     break;
                 case 2:
+                    comicsMenu.comicsMenu();
                     break;
                 case 0:
                     break;
