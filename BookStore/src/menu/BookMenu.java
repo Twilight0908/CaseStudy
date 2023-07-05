@@ -131,6 +131,7 @@ public class BookMenu {
 
             Books books = new Books(documentId, publisherName, releaseNumber, bookName, authorName, category, pageNumber, bookPrice);
             bookManagement.edit(documentId, books);
+
             System.out.println("//////////");
         }
     }
@@ -141,6 +142,7 @@ public class BookMenu {
         String str = "Nhâp Id Sách(vd: b01): ";
         String documentId = check.checkRegex(str, regex);
         bookManagement.delete(documentId);
+
         System.out.println("//////////");
     }
 
@@ -183,9 +185,11 @@ public class BookMenu {
         int index = bookManagement.findIndexById(documentId);
         if (index != -1) {
             System.out.println(bookManagement.getAll().get(index).toString());
+
             System.out.println("//////////");
         } else {
             System.out.println("Không Tìm Thấy Sách !!!");
+
             System.out.println("//////////");
         }
     }
@@ -203,6 +207,7 @@ public class BookMenu {
             }
         } else {
             System.out.println("Không Tìm Thấy Sách !!!");
+
             System.out.println("//////////");
         }
     }

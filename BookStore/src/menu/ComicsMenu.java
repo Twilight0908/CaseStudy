@@ -131,6 +131,7 @@ public class ComicsMenu {
 
             Comics comics = new Comics(documentId, publisherName, releaseNumber, comicsName, authorName, category, pageNumber, comicsPrice);
             comicsManagement.edit(documentId, comics);
+
             System.out.println("//////////");
         }
     }
@@ -141,6 +142,7 @@ public class ComicsMenu {
         String str = "Nhâp Id Truyện(vd: c01): ";
         String documentId = check.checkRegex(str, regex);
         comicsManagement.delete(documentId);
+
         System.out.println("//////////");
     }
 
@@ -183,9 +185,11 @@ public class ComicsMenu {
         int index = comicsManagement.findIndexById(documentId);
         if (index != -1) {
             System.out.println(comicsManagement.getAll().get(index).toString());
+
             System.out.println("//////////");
         } else {
             System.out.println("Không Tìm Thấy Truyện !!!");
+
             System.out.println("//////////");
         }
     }
@@ -203,6 +207,7 @@ public class ComicsMenu {
             }
         } else {
             System.out.println("Không Tìm Thấy Truyện !!!");
+
             System.out.println("//////////");
         }
     }

@@ -12,15 +12,15 @@ public class ComicsIOFile implements IOFile<Comics> {
     @Override
     public void writerFile(List<Comics> comics) throws IOException {
         String data = "";
-        for (Comics comics1 : comics) {
-            data += comics1.getDocumentId() + "," +
-                    comics1.getPublisherName() + "," +
-                    comics1.getReleaseNumber() + "," +
-                    comics1.getComicsName() + "," +
-                    comics1.getAuthorName() + "," +
-                    comics1.getCategory() + "," +
-                    comics1.getPageNumber() + "," +
-                    comics1.getComicsPrice() + "\n";
+        for (Comics comic : comics) {
+            data += comic.getDocumentId() + "," +
+                    comic.getPublisherName() + "," +
+                    comic.getReleaseNumber() + "," +
+                    comic.getComicsName() + "," +
+                    comic.getAuthorName() + "," +
+                    comic.getCategory() + "," +
+                    comic.getPageNumber() + "," +
+                    comic.getComicsPrice() + "\n";
         }
 
         FileWriter fileWriter = new FileWriter(file);

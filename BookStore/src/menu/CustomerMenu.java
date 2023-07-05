@@ -112,6 +112,7 @@ public class CustomerMenu {
         String str = "Nhập Id Khách Hàng(vd: kh01): ";
         String customerId = check.checkRegex(str, regex);
         customerManagement.delete(customerId);
+
         System.out.println("//////////");
     }
 
@@ -154,9 +155,11 @@ public class CustomerMenu {
         int index = customerManagement.findIndexById(customerId);
         if (index != -1) {
             System.out.println(customerManagement.getAll().get(index).toString());
+
             System.out.println("//////////");
         } else {
             System.out.println("Không Tìm Thấy Khách Hàng !!!");
+
             System.out.println("//////////");
         }
     }
@@ -174,6 +177,7 @@ public class CustomerMenu {
             }
         } else {
             System.out.println("Không Tìm Thấy Khách Hàng !!!");
+
             System.out.println("//////////");
         }
     }

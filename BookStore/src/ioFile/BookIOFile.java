@@ -12,15 +12,15 @@ public class BookIOFile implements IOFile<Books> {
     @Override
     public void writerFile(List<Books> books) throws IOException {
         String data = "";
-        for (Books books1 : books) {
-            data += books1.getDocumentId() + "," +
-                    books1.getPublisherName() + "," +
-                    books1.getReleaseNumber() + "," +
-                    books1.getBookName() + "," +
-                    books1.getAuthorName() + "," +
-                    books1.getCategory() + "," +
-                    books1.getPageNumber() + "," +
-                    books1.getBookPrice() + "\n";
+        for (Books book : books) {
+            data += book.getDocumentId() + "," +
+                    book.getPublisherName() + "," +
+                    book.getReleaseNumber() + "," +
+                    book.getBookName() + "," +
+                    book.getAuthorName() + "," +
+                    book.getCategory() + "," +
+                    book.getPageNumber() + "," +
+                    book.getBookPrice() + "\n";
         }
 
         FileWriter fileWriter = new FileWriter(file);

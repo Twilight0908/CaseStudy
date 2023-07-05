@@ -7,6 +7,7 @@ public class MainMenu {
     private BookMenu bookMenu = new BookMenu();
     private ComicsMenu comicsMenu = new ComicsMenu();
     private CustomerMenu customerMenu = new CustomerMenu();
+    private InvoiceMenu invoiceMenu = new InvoiceMenu();
 
     public void mainMenu() {
         int choice = -1;
@@ -14,7 +15,7 @@ public class MainMenu {
             String str = "===== Book Store =====\n" +
                     "1. Quản Lý Cửa Hàng\n" +
                     "2. Quản Lý Khách Hàng\n" +
-                    "3. Mua Sách\n" +
+                    "3. Bán Sách\n" +
                     "0. Thoát";
             System.out.println(str);
             System.out.println("----------");
@@ -30,6 +31,7 @@ public class MainMenu {
                     customerMenu.customerMenu();
                     break;
                 case 3:
+                    invoiceMenu.invoiceMenu();
                     break;
                 case 0:
                     break;

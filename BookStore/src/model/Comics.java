@@ -68,6 +68,6 @@ public class Comics extends Document {
                 "Thể Loại: " + this.getCategory() + "\n" +
                 "Số Lượng: " + super.getReleaseNumber() + "\n" +
                 "Số Trang: " + this.getPageNumber() + "\n" +
-                "Giá: " + this.getComicsPrice();
+                "Giá: " + this.getComicsPrice()+"VNĐ";
     }
 }
