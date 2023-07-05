@@ -6,6 +6,7 @@ public class MainMenu {
     private Check check = new Check();
     private BookMenu bookMenu = new BookMenu();
     private ComicsMenu comicsMenu = new ComicsMenu();
+    private CustomerMenu customerMenu = new CustomerMenu();
 
     public void mainMenu() {
         int choice = -1;
@@ -26,6 +27,7 @@ public class MainMenu {
                     this.documentMenu();
                     break;
                 case 2:
+                    customerMenu.customerMenu();
                     break;
                 case 3:
                     break;
