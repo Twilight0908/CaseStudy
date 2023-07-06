@@ -75,18 +75,34 @@ public class InvoiceMenu {
         String bookId;
         String comicsId;
         do {
-            String regexBook = "^b\\d+$";
-            String str = "Nhập Id Sách Cần Mua(vd: b01)(Nhập b0 Để Thoát Nhập): ";
-            bookId = check.checkRegex(str, regexBook);
+            while (true) {
+                String regexBook = "^b\\d+$";
+                String str = "Nhập Id Sách Cần Mua(vd: b01)(Nhập b0 Để Thoát Nhập): ";
+                bookId = check.checkRegex(str, regexBook);
+                if (bookId.equals("b0")) {
+                    break;
+                } else if (bookManagement.findIndexById(bookId) != -1) {
+                    break;
+                }
+                System.out.println("Không Có Id Sách !!!");
+            }
             if (!bookId.equals("b0")) {
                 detail += bookId + " ";
             }
         } while (!bookId.equals("b0"));
 
         do {
-            String regexComics = "^c\\d+$";
-            String str = "Nhập Id Truyện Cần Mua(vd: c01)(Nhập c0 Để Thoát Nhập): ";
-            comicsId = check.checkRegex(str, regexComics);
+            while (true) {
+                String regexComics = "^c\\d+$";
+                String str = "Nhập Id Truyện Cần Mua(vd: c01)(Nhập c0 Để Thoát Nhập): ";
+                comicsId = check.checkRegex(str, regexComics);
+                if (comicsId.equals("c0")) {
+                    break;
+                } else if (comicsManagement.findIndexById(comicsId) != -1) {
+                    break;
+                }
+                System.out.println("Không Có Id Truyện !!!");
+            }
             if (!comicsId.equals("c0")) {
                 detail += comicsId + " ";
             }

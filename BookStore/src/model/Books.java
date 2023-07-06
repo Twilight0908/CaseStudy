@@ -68,6 +68,6 @@ public class Books extends Document {
                 "Thể Loại: " + this.getCategory() + "\n" +
                 "Số Lượng: " + super.getReleaseNumber() + "\n" +
                 "Số Trang: " + this.getPageNumber() + "\n" +
-                "Giá: " + this.getBookPrice()+"VNĐ";
+                "Giá: " + this.getBookPrice() + "VNĐ";
     }
 }
