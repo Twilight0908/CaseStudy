@@ -1,17 +1,21 @@
 package menu;
 
 import check.Check;
+import management.manager.BookManagement;
+import management.manager.ComicsManagement;
+import management.manager.CustomerManagement;
 import management.manager.InvoiceManagement;
 import model.Invoice;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 
 public class InvoiceMenu {
     private InvoiceManagement invoiceManagement = new InvoiceManagement();
+    private BookManagement bookManagement = new BookManagement();
+    private ComicsManagement comicsManagement = new ComicsManagement();
+    private CustomerManagement customerManagement = new CustomerManagement();
     private Check check = new Check();
-    private Scanner input = new Scanner(System.in);
 
     public void invoiceMenu() {
         int choice = -1;
@@ -56,19 +60,51 @@ public class InvoiceMenu {
             System.out.println("Id Hóa Đơn Đã Có !!!");
         }
 
-        System.out.print("Nhập Id Khách Hàng: ");
-        String customerId = input.nextLine();
+        String customerId;
+        while (true) {
+            String regex = "^kh\\d+$";
+            String str = "Nhập Id Khách Hàng(vd: kh01): ";
+            customerId = check.checkRegex(str, regex);
+            if (customerManagement.findIndexById(customerId) != -1) {
+                break;
+            }
+            System.out.println("Không Có Id Khách Hàng !!!");
+        }
 
-        System.out.print("Nhập Id Sách/Truyện Cần Mua: ");
-        String detail = input.nextLine();
+        String detail = "";
+        String bookId;
+        String comicsId;
+        do {
+            String regexBook = "^b\\d+$";
+            String str = "Nhập Id Sách Cần Mua(vd: b01)(Nhập b0 Để Thoát Nhập): ";
+            bookId = check.checkRegex(str, regexBook);
+            if (!bookId.equals("b0")) {
+                detail += bookId + " ";
+            }
+        } while (!bookId.equals("b0"));
+
+        do {
+            String regexComics = "^c\\d+$";
+            String str = "Nhập Id Truyện Cần Mua(vd: c01)(Nhập c0 Để Thoát Nhập): ";
+            comicsId = check.checkRegex(str, regexComics);
+            if (!comicsId.equals("c0")) {
+                detail += comicsId + " ";
+            }
+        } while (!comicsId.equals("c0"));
 
         Date currentDate = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String formattedDate = dateFormat.format(currentDate);
 
-        String str = "Nhập Tổng Tiền: ";
-        System.out.print(str);
-        double total = check.checkInputNumber(str);
+        double total = 0;
+        String[] data = detail.split(" ");
+        for (String s : data) {
+            if (s.contains("b")) {
+                total += bookManagement.getAll().get(bookManagement.findIndexById(s)).getBookPrice();
+            } else {
+                total += comicsManagement.getAll().get(comicsManagement.findIndexById(s)).getComicsPrice();
+            }
+        }
 
         Invoice invoice = new Invoice(invoiceId, customerId, detail, formattedDate, total);
         invoiceManagement.add(invoice);
