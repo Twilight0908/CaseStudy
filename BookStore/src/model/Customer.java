@@ -1,5 +1,7 @@
 package model;
 
+import check.ConsoleColors;
+
 public class Customer {
     private String customerId;
     private String name;
@@ -50,9 +52,9 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Id Khách Hàng: " + this.getCustomerId() + "\n" +
-                "Tên Khách Hàng: " + this.getName() + "\n" +
-                "Số Điện Thoại: " + this.getPhone() + "\n" +
-                "Địa Chỉ: " + this.getAddress();
+        return "Id Khách Hàng: " + ConsoleColors.PURPLE_BOLD_BRIGHT + this.getCustomerId() + "\n" + ConsoleColors.RESET +
+                "Tên Khách Hàng: " + ConsoleColors.PURPLE_BOLD_BRIGHT + this.getName() + "\n" + ConsoleColors.RESET +
+                "Số Điện Thoại: " + ConsoleColors.PURPLE_BOLD_BRIGHT + this.getPhone() + "\n" + ConsoleColors.RESET +
+                "Địa Chỉ: " + ConsoleColors.PURPLE_BOLD_BRIGHT + this.getAddress() + ConsoleColors.RESET;
     }
 }

@@ -1,5 +1,6 @@
 package management.manager;
 
+import check.ConsoleColors;
 import ioFile.ComicsIOFile;
 import management.iManagement.DocumentManagement;
 import model.Comics;
@@ -25,7 +26,7 @@ public class ComicsManagement implements DocumentManagement<Comics> {
         try {
             this.comicsList.add(comics);
             this.comicsIOFile.writerFile(comicsList);
-            System.out.println("Thêm Thành Công !!!");
+            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "Thêm Thành Công !!!" + ConsoleColors.RESET);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,12 +39,12 @@ public class ComicsManagement implements DocumentManagement<Comics> {
             try {
                 this.comicsList.set(index, comics);
                 this.comicsIOFile.writerFile(comicsList);
-                System.out.println("Sửa Thành Công !!!");
+                System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "Sửa Thành Công !!!" + ConsoleColors.RESET);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Không Có Id Muốn Sửa !!!");
+            System.out.println(ConsoleColors.RED_BOLD + "Không Có Id Muốn Sửa !!!" + ConsoleColors.RESET);
         }
     }
 
@@ -54,12 +55,12 @@ public class ComicsManagement implements DocumentManagement<Comics> {
             try {
                 this.comicsList.remove(index);
                 this.comicsIOFile.writerFile(comicsList);
-                System.out.println("Xóa Thành Công !!!");
+                System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "Xóa Thành Công !!!" + ConsoleColors.RESET);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Không Có Id Muốn Xóa !!!");
+            System.out.println(ConsoleColors.RED_BOLD + "Không Có Id Muốn Xóa !!!" + ConsoleColors.RESET);
         }
     }
 

@@ -1,6 +1,7 @@
 package menu;
 
 import check.Check;
+import check.ConsoleColors;
 import management.manager.CustomerManagement;
 import model.Customer;
 
@@ -15,18 +16,18 @@ public class CustomerMenu {
     public void customerMenu() {
         int choice = -1;
         do {
-            String str = "===== Quản Lý Khách Hàng =====\n" +
+            String str = ConsoleColors.BLUE_BOLD_BRIGHT + "===== Quản Lý Khách Hàng =====\n" + ConsoleColors.RESET +
                     "1. Thêm Khách Hàng\n" +
                     "2. Sửa Khách Hàng\n" +
                     "3. Xóa Khách Hàng\n" +
                     "4. Tìm Kiếm Khách Hàng\n" +
                     "5. Hiển Thị Khách Hàng\n" +
-                    "0. Thoát";
+                    ConsoleColors.RED_BOLD + "0. Thoát" + ConsoleColors.RESET;
             System.out.println(str);
-            System.out.println("----------");
-            System.out.print("Nhập Lựa Chọn: ");
+            System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
+            System.out.print(ConsoleColors.GREEN_BOLD_BRIGHT + "Nhập Lựa Chọn: " + ConsoleColors.RESET);
             choice = check.checkInput();
-            System.out.println("----------");
+            System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
 
             switch (choice) {
                 case 1:
@@ -47,15 +48,15 @@ public class CustomerMenu {
                 case 0:
                     break;
                 default:
-                    System.out.println("Không Có Lựa Chọn !!!");
-                    System.out.println("----------");
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Không Có Lựa Chọn !!!" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
                     break;
             }
         } while (choice != 0);
     }
 
     private void addMenu() {
-        System.out.println("+++++ Thêm Khách Hàng +++++");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "+++++ Thêm Khách Hàng +++++" + ConsoleColors.RESET);
         String customerId;
         while (true) {
             String regex = "^kh\\d+$";
@@ -64,7 +65,7 @@ public class CustomerMenu {
             if (customerManagement.findIndexById(customerId) == -1) {
                 break;
             }
-            System.out.println("Id Khách Hàng Đã Có !!!");
+            System.out.println(ConsoleColors.RED_BOLD + "Id Khách Hàng Đã Có !!!" + ConsoleColors.RESET);
         }
 
         System.out.print("Nhập Tên Khách Hàng: ");
@@ -83,12 +84,12 @@ public class CustomerMenu {
     }
 
     private void editMenu() {
-        System.out.println("!!!!! Sửa Khách Hàng !!!!!");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "!!!!! Sửa Khách Hàng !!!!!" + ConsoleColors.RESET);
         String regex = "^kh\\d+$";
         String str = "Nhập Id Khách Hàng(vd: kh01): ";
         String customerId = check.checkRegex(str, regex);
         if (customerManagement.findIndexById(customerId) == -1) {
-            System.out.println("Không Có Id Muốn Sửa");
+            System.out.println(ConsoleColors.RED_BOLD + "Không Có Id Muốn Sửa" + ConsoleColors.RESET);
         } else {
             System.out.print("Nhập Tên Khách Hàng: ");
             String name = input.nextLine();
@@ -107,7 +108,7 @@ public class CustomerMenu {
     }
 
     private void deleteMenu() {
-        System.out.println("----- Xóa Khách Hàng -----");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "----- Xóa Khách Hàng -----" + ConsoleColors.RESET);
         String regex = "^kh\\d+$";
         String str = "Nhập Id Khách Hàng(vd: kh01): ";
         String customerId = check.checkRegex(str, regex);
@@ -119,15 +120,15 @@ public class CustomerMenu {
     private void findMenu() {
         int choice = -1;
         do {
-            String str = "%%%%% Tìm Khách Hàng %%%%%\n" +
+            String str = ConsoleColors.BLUE_BOLD_BRIGHT + "%%%%% Tìm Khách Hàng %%%%%\n" + ConsoleColors.RESET +
                     "1. Tìm Khách Hàng Theo Id\n" +
                     "2. Tìm Khách Hàng Theo Tên\n" +
-                    "0. Thoát";
+                    ConsoleColors.RED_BOLD + "0. Thoát" + ConsoleColors.RESET;
             System.out.println(str);
-            System.out.println("----------");
-            System.out.print("Nhập Lựa Chọn: ");
+            System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
+            System.out.print(ConsoleColors.GREEN_BOLD_BRIGHT + "Nhập Lựa Chọn: " + ConsoleColors.RESET);
             choice = check.checkInput();
-            System.out.println("----------");
+            System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
 
             switch (choice) {
                 case 1:
@@ -139,54 +140,54 @@ public class CustomerMenu {
                 case 0:
                     break;
                 default:
-                    System.out.println("Không Có Lựa Chọn !!!");
-                    System.out.println("----------");
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Không Có Lựa Chọn !!!" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
                     break;
             }
         } while (choice != 0);
     }
 
     private void findById() {
-        System.out.println("%%%%% Tìm Khách Hàng Theo Id %%%%%");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "%%%%% Tìm Khách Hàng Theo Id %%%%%" + ConsoleColors.RESET);
         String regex = "^kh\\d+$";
         String str = "Nhâp Id Khách Hàng(vd: kh01): ";
         String customerId = check.checkRegex(str, regex);
-        System.out.println("----------");
+        System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
         int index = customerManagement.findIndexById(customerId);
         if (index != -1) {
             System.out.println(customerManagement.getAll().get(index).toString());
 
             System.out.println("//////////");
         } else {
-            System.out.println("Không Tìm Thấy Khách Hàng !!!");
+            System.out.println(ConsoleColors.RED_BOLD + "Không Tìm Thấy Khách Hàng !!!" + ConsoleColors.RESET);
 
             System.out.println("//////////");
         }
     }
 
     private void findByName() {
-        System.out.println("%%%%% Tìm Khách Hàng Theo Tên %%%%%");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "%%%%% Tìm Khách Hàng Theo Tên %%%%%" + ConsoleColors.RESET);
         System.out.print("Nhập Tên Khách Hàng: ");
         String name = input.nextLine();
-        System.out.println("----------");
+        System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
         List<Customer> list = customerManagement.findByName(name);
         if (list.size() != 0) {
             for (Customer customer : list) {
                 System.out.println(customer.toString());
-                System.out.println("**********");
+                System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "**********" + ConsoleColors.RESET);
             }
         } else {
-            System.out.println("Không Tìm Thấy Khách Hàng !!!");
+            System.out.println(ConsoleColors.RED_BOLD + "Không Tìm Thấy Khách Hàng !!!" + ConsoleColors.RESET);
 
             System.out.println("//////////");
         }
     }
 
     private void showAllCustomer() {
-        System.out.println("***** Danh Sách Khách Hàng *****");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "***** Danh Sách Khách Hàng *****" + ConsoleColors.RESET);
         for (Customer customer : customerManagement.getAll()) {
             System.out.println(customer.toString());
-            System.out.println("**********");
+            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "**********" + ConsoleColors.RESET);
         }
         System.out.println("//////////");
     }

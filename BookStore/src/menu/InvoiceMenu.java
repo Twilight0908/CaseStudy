@@ -1,34 +1,43 @@
 package menu;
 
 import check.Check;
+import check.ConsoleColors;
+import ioFile.BookIOFile;
+import ioFile.ComicsIOFile;
 import management.manager.BookManagement;
 import management.manager.ComicsManagement;
 import management.manager.CustomerManagement;
 import management.manager.InvoiceManagement;
+import model.Books;
+import model.Comics;
 import model.Invoice;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class InvoiceMenu {
     private InvoiceManagement invoiceManagement = new InvoiceManagement();
     private BookManagement bookManagement = new BookManagement();
     private ComicsManagement comicsManagement = new ComicsManagement();
     private CustomerManagement customerManagement = new CustomerManagement();
+    private BookIOFile bookIOFile = new BookIOFile();
+    private ComicsIOFile comicsIOFile = new ComicsIOFile();
     private Check check = new Check();
 
     public void invoiceMenu() {
         int choice = -1;
         do {
-            String str = "===== Bán Sách =====\n" +
+            String str = ConsoleColors.BLUE_BOLD_BRIGHT + "===== Bán Sách =====\n" + ConsoleColors.RESET +
                     "1. Thêm Hóa Đơn\n" +
                     "2. Hiển Thị Hóa Đơn\n" +
-                    "0. Thoát";
+                    ConsoleColors.RED_BOLD + "0. Thoát" + ConsoleColors.RESET;
             System.out.println(str);
-            System.out.println("----------");
-            System.out.print("Nhập Lựa Chọn: ");
+            System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
+            System.out.print(ConsoleColors.GREEN_BOLD_BRIGHT + "Nhập Lựa Chọn: " + ConsoleColors.RESET);
             choice = check.checkInput();
-            System.out.println("----------");
+            System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
 
             switch (choice) {
                 case 1:
@@ -40,15 +49,15 @@ public class InvoiceMenu {
                 case 0:
                     break;
                 default:
-                    System.out.println("Không Có Lựa Chọn !!!");
-                    System.out.println("----------");
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Không Có Lựa Chọn !!!" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
                     break;
             }
         } while (choice != -0);
     }
 
     private void addMenu() {
-        System.out.println("+++++ Thêm Hóa Đơn +++++");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "+++++ Thêm Hóa Đơn +++++" + ConsoleColors.RESET);
         String invoiceId;
         while (true) {
             String regex = "^iv\\d+$";
@@ -57,7 +66,7 @@ public class InvoiceMenu {
             if (invoiceManagement.findIndexById(invoiceId) == -1) {
                 break;
             }
-            System.out.println("Id Hóa Đơn Đã Có !!!");
+            System.out.println(ConsoleColors.RED_BOLD + "Id Hóa Đơn Đã Có !!!" + ConsoleColors.RESET);
         }
 
         String customerId;
@@ -68,7 +77,7 @@ public class InvoiceMenu {
             if (customerManagement.findIndexById(customerId) != -1) {
                 break;
             }
-            System.out.println("Không Có Id Khách Hàng !!!");
+            System.out.println(ConsoleColors.RED_BOLD + "Không Có Id Khách Hàng !!!" + ConsoleColors.RESET);
         }
 
         String detail = "";
@@ -82,9 +91,23 @@ public class InvoiceMenu {
                 if (bookId.equals("b0")) {
                     break;
                 } else if (bookManagement.findIndexById(bookId) != -1) {
-                    break;
+                    List<Books> list = bookManagement.getAll();
+                    if (list.get(bookManagement.findIndexById(bookId)).getReleaseNumber() > 0) {
+                        list.get(bookManagement.findIndexById(bookId)).setReleaseNumber(
+                                list.get(bookManagement.findIndexById(bookId)).getReleaseNumber() - 1
+                        );
+                        try {
+                            bookIOFile.writerFile(list);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        break;
+                    } else {
+                        System.out.println(ConsoleColors.RED_BOLD + "Đã Hết. Hãy Chọn Sách Khác !!!" + ConsoleColors.RESET);
+                        continue;
+                    }
                 }
-                System.out.println("Không Có Id Sách !!!");
+                System.out.println(ConsoleColors.RED_BOLD + "Không Có Id Sách !!!" + ConsoleColors.RESET);
             }
             if (!bookId.equals("b0")) {
                 detail += bookId + " ";
@@ -99,9 +122,23 @@ public class InvoiceMenu {
                 if (comicsId.equals("c0")) {
                     break;
                 } else if (comicsManagement.findIndexById(comicsId) != -1) {
-                    break;
+                    List<Comics> list = comicsManagement.getAll();
+                    if (list.get(comicsManagement.findIndexById(comicsId)).getReleaseNumber() > 0) {
+                        list.get(comicsManagement.findIndexById(comicsId)).setReleaseNumber(
+                                list.get(comicsManagement.findIndexById(comicsId)).getReleaseNumber() - 1
+                        );
+                        try {
+                            comicsIOFile.writerFile(list);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        break;
+                    } else {
+                        System.out.println(ConsoleColors.RED_BOLD + "Đã Hết. Hãy Chọn Truyện Khác !!!" + ConsoleColors.RESET);
+                        continue;
+                    }
                 }
-                System.out.println("Không Có Id Truyện !!!");
+                System.out.println(ConsoleColors.RED_BOLD + "Không Có Id Truyện !!!" + ConsoleColors.RESET);
             }
             if (!comicsId.equals("c0")) {
                 detail += comicsId + " ";
@@ -129,10 +166,10 @@ public class InvoiceMenu {
     }
 
     private void showAllInvoice() {
-        System.out.println("***** Danh Sách Hóa Đơn *****");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "***** Danh Sách Hóa Đơn *****" + ConsoleColors.RESET);
         for (Invoice invoice : invoiceManagement.getAll()) {
             System.out.println(invoice.toString());
-            System.out.println("**********");
+            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "**********" + ConsoleColors.RESET);
         }
         System.out.println("//////////");
     }

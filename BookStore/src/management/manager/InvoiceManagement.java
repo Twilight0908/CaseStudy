@@ -1,5 +1,6 @@
 package management.manager;
 
+import check.ConsoleColors;
 import ioFile.InvoiceIOFile;
 import model.Invoice;
 
@@ -22,7 +23,7 @@ public class InvoiceManagement {
         try {
             this.invoiceList.add(invoice);
             this.invoiceIOFile.writerFile(invoiceList);
-            System.out.println("Thêm Thành Công !!!");
+            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "Thêm Thành Công !!!" + ConsoleColors.RESET);
         } catch (IOException e) {
             e.printStackTrace();
         }

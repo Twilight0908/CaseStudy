@@ -1,5 +1,7 @@
 package model;
 
+import check.ConsoleColors;
+
 public class Comics extends Document {
     private String comicsName;
     private String authorName;
@@ -61,13 +63,13 @@ public class Comics extends Document {
 
     @Override
     public String toString() {
-        return "Mã Truyện: " + super.getDocumentId() + "\n" +
-                "Nhà Xuất Bản: " + super.getPublisherName() + "\n" +
-                "Tên Truyện: " + this.getComicsName() + "\n" +
-                "Tác Giả: " + this.getAuthorName() + "\n" +
-                "Thể Loại: " + this.getCategory() + "\n" +
-                "Số Lượng: " + super.getReleaseNumber() + "\n" +
-                "Số Trang: " + this.getPageNumber() + "\n" +
-                "Giá: " + this.getComicsPrice() + "VNĐ";
+        return "Mã Truyện: " + ConsoleColors.PURPLE_BOLD_BRIGHT + super.getDocumentId() + "\n" + ConsoleColors.RESET +
+                "Nhà Xuất Bản: " + ConsoleColors.PURPLE_BOLD_BRIGHT + super.getPublisherName() + "\n" + ConsoleColors.RESET +
+                "Tên Truyện: " + ConsoleColors.PURPLE_BOLD_BRIGHT + this.getComicsName() + "\n" + ConsoleColors.RESET +
+                "Tác Giả: " + ConsoleColors.PURPLE_BOLD_BRIGHT + this.getAuthorName() + "\n" + ConsoleColors.RESET +
+                "Thể Loại: " + ConsoleColors.PURPLE_BOLD_BRIGHT + this.getCategory() + "\n" + ConsoleColors.RESET +
+                "Số Lượng: " + ConsoleColors.PURPLE_BOLD_BRIGHT + super.getReleaseNumber() + "\n" + ConsoleColors.RESET +
+                "Số Trang: " + ConsoleColors.PURPLE_BOLD_BRIGHT + this.getPageNumber() + "\n" + ConsoleColors.RESET +
+                "Giá: " + ConsoleColors.PURPLE_BOLD_BRIGHT + this.getComicsPrice() + " VNĐ" + ConsoleColors.RESET;
     }
 }

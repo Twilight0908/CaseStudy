@@ -1,8 +1,10 @@
 package menu;
 
 import check.Check;
+import check.ConsoleColors;
 import management.manager.BookManagement;
 import model.Books;
+import model.Comics;
 
 import java.util.List;
 import java.util.Scanner;
@@ -15,18 +17,18 @@ public class BookMenu {
     public void bookMenu() {
         int choice = -1;
         do {
-            String str = "===== Quản Lý Sách =====\n" +
+            String str = ConsoleColors.BLUE_BOLD_BRIGHT + "===== Quản Lý Sách =====\n" + ConsoleColors.RESET +
                     "1. Thêm Sách\n" +
                     "2. Sửa Sách\n" +
                     "3. Xóa Sách\n" +
                     "4. Tìm Kiếm Sách\n" +
                     "5. Hiển Thị Sách\n" +
-                    "0. Thoát";
+                    ConsoleColors.RED_BOLD + "0. Thoát" + ConsoleColors.RESET;
             System.out.println(str);
-            System.out.println("----------");
-            System.out.print("Nhập Lựa Chọn: ");
+            System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
+            System.out.print(ConsoleColors.GREEN_BOLD_BRIGHT + "Nhập Lựa Chọn: " + ConsoleColors.RESET);
             choice = check.checkInput();
-            System.out.println("----------");
+            System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
 
             switch (choice) {
                 case 1:
@@ -47,15 +49,15 @@ public class BookMenu {
                 case 0:
                     break;
                 default:
-                    System.out.println("Không Có Lựa Chọn !!!");
-                    System.out.println("----------");
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Không Có Lựa Chọn !!!" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
                     break;
             }
         } while (choice != 0);
     }
 
     private void addMenu() {
-        System.out.println("+++++ Thêm Sách +++++");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "+++++ Thêm Sách +++++" + ConsoleColors.RESET);
         String documentId;
         while (true) {
             String regex = "^b\\d+$";
@@ -64,7 +66,7 @@ public class BookMenu {
             if (bookManagement.findIndexById(documentId) == -1) {
                 break;
             }
-            System.out.println("Id Sách Đã Có !!!");
+            System.out.println(ConsoleColors.RED_BOLD + "Id Sách Đã Có !!!" + ConsoleColors.RESET);
         }
 
         System.out.print("Nhập Nhà Xuất Bản: ");
@@ -98,12 +100,12 @@ public class BookMenu {
     }
 
     private void editMenu() {
-        System.out.println("!!!!! Sửa Sách !!!!!");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "!!!!! Sửa Sách !!!!!" + ConsoleColors.RESET);
         String regex = "^b\\d+$";
         String str = "Nhâp Id Sách(vd: b01): ";
         String documentId = check.checkRegex(str, regex);
         if (bookManagement.findIndexById(documentId) == -1) {
-            System.out.println("Không Có Id Muốn Sửa !!!");
+            System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Không Có Id Muốn Sửa !!!" + ConsoleColors.RESET);
         } else {
             System.out.print("Nhập Nhà Xuất Bản: ");
             String publisherName = input.nextLine();
@@ -137,7 +139,7 @@ public class BookMenu {
     }
 
     private void deleteMenu() {
-        System.out.println("----- Xóa Sách -----");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "----- Xóa Sách -----" + ConsoleColors.RESET);
         String regex = "^b\\d+$";
         String str = "Nhâp Id Sách(vd: b01): ";
         String documentId = check.checkRegex(str, regex);
@@ -149,15 +151,15 @@ public class BookMenu {
     private void findMenu() {
         int choice = -1;
         do {
-            String str = "%%%%% Tìm Sách %%%%%\n" +
+            String str = ConsoleColors.BLUE_BOLD_BRIGHT + "%%%%% Tìm Sách %%%%%\n" + ConsoleColors.RESET +
                     "1. Tìm Sách Theo Id\n" +
                     "2. Tìm Sách Theo Tên\n" +
-                    "0. Thoát";
+                    ConsoleColors.RED_BOLD + "0. Thoát" + ConsoleColors.RESET;
             System.out.println(str);
-            System.out.println("----------");
-            System.out.print("Nhập Lựa Chọn: ");
+            System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
+            System.out.print(ConsoleColors.GREEN_BOLD_BRIGHT + "Nhập Lựa Chọn: " + ConsoleColors.RESET);
             choice = check.checkInput();
-            System.out.println("----------");
+            System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
 
             switch (choice) {
                 case 1:
@@ -169,54 +171,54 @@ public class BookMenu {
                 case 0:
                     break;
                 default:
-                    System.out.println("Không Có Lựa Chọn !!!");
-                    System.out.println("----------");
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Không Có Lựa Chọn !!!" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
                     break;
             }
         } while (choice != 0);
     }
 
     private void findById() {
-        System.out.println("%%%%% Tìm Sách Theo Id %%%%%");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "%%%%% Tìm Sách Theo Id %%%%%" + ConsoleColors.RESET);
         String regex = "^b\\d+$";
         String str = "Nhâp Id Sách(vd: b01): ";
         String documentId = check.checkRegex(str, regex);
-        System.out.println("----------");
+        System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
         int index = bookManagement.findIndexById(documentId);
         if (index != -1) {
             System.out.println(bookManagement.getAll().get(index).toString());
 
             System.out.println("//////////");
         } else {
-            System.out.println("Không Tìm Thấy Sách !!!");
+            System.out.println(ConsoleColors.RED_BOLD + "Không Tìm Thấy Sách !!!" + ConsoleColors.RESET);
 
             System.out.println("//////////");
         }
     }
 
     private void findByName() {
-        System.out.println("%%%%% Tìm Sách Theo Tên %%%%%");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "%%%%% Tìm Sách Theo Tên %%%%%" + ConsoleColors.RESET);
         System.out.print("Nhập Tên Sách: ");
         String bookName = input.nextLine();
-        System.out.println("----------");
+        System.out.println(ConsoleColors.CYAN_BOLD + "----------" + ConsoleColors.RESET);
         List<Books> list = bookManagement.findByName(bookName);
         if (list.size() != 0) {
             for (Books books : list) {
                 System.out.println(books.toString());
-                System.out.println("**********");
+                System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "**********" + ConsoleColors.RESET);
             }
         } else {
-            System.out.println("Không Tìm Thấy Sách !!!");
+            System.out.println(ConsoleColors.RED_BOLD + "Không Tìm Thấy Sách !!!" + ConsoleColors.RESET);
 
             System.out.println("//////////");
         }
     }
 
     private void showAllBooks() {
-        System.out.println("***** Danh Sách Sách *****");
+        System.out.println(ConsoleColors.BLUE_BOLD_BRIGHT + "***** Danh Sách Sách *****" + ConsoleColors.RESET);
         for (Books books : bookManagement.getAll()) {
             System.out.println(books.toString());
-            System.out.println("**********");
+            System.out.println(ConsoleColors.GREEN_BOLD_BRIGHT + "**********" + ConsoleColors.RESET);
         }
         System.out.println("//////////");
     }

@@ -13,8 +13,8 @@ public class Check {
                 input = Integer.parseInt(Input.nextLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Hãy Nhập Số !!!");
-                System.out.print("Nhập Lựa Chọn: ");
+                System.out.println(ConsoleColors.RED_BOLD + "Hãy Nhập Số !!!" + ConsoleColors.RESET);
+                System.out.print(ConsoleColors.GREEN_BOLD_BRIGHT + "Nhập Lựa Chọn: " + ConsoleColors.RESET);
             }
         }
         return input;
@@ -27,7 +27,7 @@ public class Check {
                 input = Integer.parseInt(Input.nextLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Hãy Nhập Số !!!");
+                System.out.println(ConsoleColors.RED_BOLD + "Hãy Nhập Số !!!" + ConsoleColors.RESET);
                 System.out.print(str);
             }
         }
@@ -41,6 +41,9 @@ public class Check {
             System.out.print(str);
             input = Input.nextLine();
             check = input.matches(regex);
+            if (check == false) {
+                System.out.println(ConsoleColors.RED_BOLD + "Không Đúng Định Dạng !!!" + ConsoleColors.RESET);
+            }
         } while (!check);
         return input;
     }

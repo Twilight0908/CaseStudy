@@ -1,5 +1,7 @@
 package model;
 
+import check.ConsoleColors;
+
 public class Invoice {
     private String invoiceId;
     private String customerId;
@@ -60,10 +62,10 @@ public class Invoice {
 
     @Override
     public String toString() {
-        return "Id Hóa Đơn: " + getInvoiceId() + "\n" +
-                "Id Khách Hàng: " + getCustomerId() + "\n" +
-                "Chi Tiết: " + getDetail() + "\n" +
-                "Ngày Mua: " + getDate() + "\n" +
-                "Tổng Tiền: " + getTotal() + "VNĐ";
+        return "Id Hóa Đơn: " + ConsoleColors.PURPLE_BOLD_BRIGHT + getInvoiceId() + "\n" + ConsoleColors.RESET +
+                "Id Khách Hàng: " + ConsoleColors.PURPLE_BOLD_BRIGHT + getCustomerId() + "\n" + ConsoleColors.RESET +
+                "Chi Tiết: " + ConsoleColors.PURPLE_BOLD_BRIGHT + getDetail() + "\n" + ConsoleColors.RESET +
+                "Ngày Mua: " + ConsoleColors.PURPLE_BOLD_BRIGHT + getDate() + "\n" + ConsoleColors.RESET +
+                "Tổng Tiền: " + ConsoleColors.PURPLE_BOLD_BRIGHT + getTotal() + " VNĐ" + ConsoleColors.RESET;
     }
 }
