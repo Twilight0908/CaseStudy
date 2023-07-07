@@ -1,6 +1,5 @@
 package check;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Check {
@@ -41,7 +40,7 @@ public class Check {
             System.out.print(str);
             input = Input.nextLine();
             check = input.matches(regex);
-            if (check == false) {
+            if (!check) {
                 System.out.println(ConsoleColors.RED_BOLD + "Không Đúng Định Dạng !!!" + ConsoleColors.RESET);
             }
         } while (!check);
