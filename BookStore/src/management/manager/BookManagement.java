@@ -66,6 +66,11 @@ public class BookManagement implements DocumentManagement<Books> {
 
     @Override
     public int findIndexById(String id) {
+        try {
+            this.booksList = bookIOFile.readerFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         for (int i = 0; i < this.booksList.size(); i++) {
             if (id.equals(this.booksList.get(i).getDocumentId())) {
                 return i;

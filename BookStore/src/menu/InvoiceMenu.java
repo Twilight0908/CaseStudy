@@ -25,6 +25,7 @@ public class InvoiceMenu {
     private BookIOFile bookIOFile = new BookIOFile();
     private ComicsIOFile comicsIOFile = new ComicsIOFile();
     private Check check = new Check();
+    private CustomerMenu customerMenu = new CustomerMenu();
 
     public void invoiceMenu() {
         int choice = -1;
@@ -77,7 +78,8 @@ public class InvoiceMenu {
             if (customerManagement.findIndexById(customerId) != -1) {
                 break;
             }
-            System.out.println(ConsoleColors.RED_BOLD + "Không Có Id Khách Hàng !!!" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED_BOLD + "Không Có Id Khách Hàng. Hãy Thêm Khách Hàng !!!" + ConsoleColors.RESET);
+            customerMenu.customerMenu();
         }
 
         String detail = "";
@@ -158,6 +160,9 @@ public class InvoiceMenu {
                 total += comicsManagement.getAll().get(comicsManagement.findIndexById(s)).getComicsPrice();
             }
         }
+
+        System.out.println("Ngày Tạo Hóa Đơn: " + formattedDate);
+        System.out.println("Tổng Tiền: " + total + " VNĐ");
 
         Invoice invoice = new Invoice(invoiceId, customerId, detail, formattedDate, total);
         invoiceManagement.add(invoice);

@@ -61,6 +61,11 @@ public class CustomerManagement {
     }
 
     public int findIndexById(String id) {
+        try {
+            this.customerList = customerIOFile.readerFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         for (int i = 0; i < customerList.size(); i++) {
             if (id.equals(this.customerList.get(i).getCustomerId())) {
                 return i;

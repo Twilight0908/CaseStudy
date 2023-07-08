@@ -107,6 +107,8 @@ public class BookMenu {
         if (bookManagement.findIndexById(documentId) == -1) {
             System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "Không Có Id Muốn Sửa !!!" + ConsoleColors.RESET);
         } else {
+            System.out.println(bookManagement.getAll().get(bookManagement.findIndexById(documentId)).toString());
+
             System.out.print("Nhập Nhà Xuất Bản: ");
             String publisherName = input.nextLine();
 

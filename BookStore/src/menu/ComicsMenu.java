@@ -106,6 +106,8 @@ public class ComicsMenu {
         if (comicsManagement.findIndexById(documentId) == -1) {
             System.out.println(ConsoleColors.RED_BOLD + "Không Có Id Muốn Sửa !!!" + ConsoleColors.RESET);
         } else {
+            System.out.println(comicsManagement.getAll().get(comicsManagement.findIndexById(documentId)).toString());
+
             System.out.print("Nhập Nhà Xuất Bản: ");
             String publisherName = input.nextLine();
 

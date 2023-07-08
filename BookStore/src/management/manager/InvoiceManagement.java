@@ -30,6 +30,11 @@ public class InvoiceManagement {
     }
 
     public int findIndexById(String id) {
+        try {
+            this.invoiceList = invoiceIOFile.readerFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         for (int i = 0; i < this.invoiceList.size(); i++) {
             if (id.equals(this.invoiceList.get(i).getInvoiceId())) {
                 return i;

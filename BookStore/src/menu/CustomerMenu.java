@@ -71,8 +71,9 @@ public class CustomerMenu {
         System.out.print("Nhập Tên Khách Hàng: ");
         String name = input.nextLine();
 
-        System.out.print("Nhập Số Điện Thoại: ");
-        String phone = input.nextLine();
+        String strPhone = "Nhập Số Điện Thoại: ";
+        String regexPhone = "^\\d+$";
+        String phone = check.checkRegex(strPhone, regexPhone);
 
         System.out.print("Nhập Địa Chỉ: ");
         String address = input.nextLine();
@@ -91,11 +92,14 @@ public class CustomerMenu {
         if (customerManagement.findIndexById(customerId) == -1) {
             System.out.println(ConsoleColors.RED_BOLD + "Không Có Id Muốn Sửa" + ConsoleColors.RESET);
         } else {
+            System.out.println(customerManagement.getAll().get(customerManagement.findIndexById(customerId)).toString());
+
             System.out.print("Nhập Tên Khách Hàng: ");
             String name = input.nextLine();
 
-            System.out.print("Nhập Số Điện Thoại: ");
-            String phone = input.nextLine();
+            String strPhone = "Nhập Số Điện Thoại: ";
+            String regexPhone = "^\\d+$";
+            String phone = check.checkRegex(strPhone, regexPhone);
 
             System.out.print("Nhập Địa Chỉ: ");
             String address = input.nextLine();

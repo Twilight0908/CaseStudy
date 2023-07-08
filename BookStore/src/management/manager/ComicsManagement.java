@@ -66,6 +66,11 @@ public class ComicsManagement implements DocumentManagement<Comics> {
 
     @Override
     public int findIndexById(String id) {
+        try {
+            this.comicsList = comicsIOFile.readerFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         for (int i = 0; i < this.comicsList.size(); i++) {
             if (id.equals(this.comicsList.get(i).getDocumentId())) {
                 return i;
