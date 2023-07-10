@@ -4,7 +4,6 @@ import check.Check;
 import check.ConsoleColors;
 import management.manager.BookManagement;
 import model.Books;
-import model.Comics;
 
 import java.util.List;
 import java.util.Scanner;
